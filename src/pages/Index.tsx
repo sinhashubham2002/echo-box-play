@@ -6,6 +6,10 @@ import { Label } from "@/components/ui/label";
 const Index = () => {
   const [inputText, setInputText] = useState("");
 
+  const handlePaste = (e: React.ClipboardEvent) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="min-h-screen bg-gradient-subtle flex items-center justify-center p-6">
       <div className="w-full max-w-2xl space-y-8">
@@ -35,6 +39,7 @@ const Index = () => {
                 placeholder="Start typing to see the magic happen..."
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
+                onPaste={handlePaste}
                 className="text-lg py-3 px-4 border-2 focus:border-primary/50 transition-all duration-300"
               />
             </div>
@@ -44,13 +49,13 @@ const Index = () => {
               <Label className="text-base font-medium">
                 Your text appears here:
               </Label>
-              <div className="min-h-[120px] bg-gradient-primary/5 border-2 border-dashed border-primary/20 rounded-lg p-6 transition-all duration-300">
+              <div className="min-h-[120px] bg-gradient-primary/5 border-2 border-dashed border-primary/20 rounded-lg p-6 transition-all duration-300 select-none">
                 {inputText ? (
-                  <p className="text-lg text-foreground break-words animate-in fade-in duration-200">
+                  <p className="text-lg text-foreground break-words animate-in fade-in duration-200 select-none">
                     {inputText}
                   </p>
                 ) : (
-                  <p className="text-muted-foreground italic">
+                  <p className="text-muted-foreground italic select-none">
                     Your typed text will appear here...
                   </p>
                 )}
